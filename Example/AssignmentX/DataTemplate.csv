@@ -1,0 +1,1 @@
+Trial,Processes,Wall (Actual time elapsed),User (Time spent executing in userspace),System (Time spent executing in kernel space),CPU (Percentage of CPU used),I-Switched (Number of times involuntarily context switched),V-Switched (Number of times voluntarily context switched)

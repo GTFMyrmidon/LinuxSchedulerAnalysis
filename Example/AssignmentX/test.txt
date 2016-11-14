@@ -1,0 +1,10 @@
+Current Scheduling Policy: 0
+Setting Scheduling Policy to: 0
+New Scheduling Policy: 0
+pi = 3.200000
+0.00user 0.00system 0:00.00elapsed ?%CPU (0avgtext+0avgdata 1960maxresident)k
+0inputs+8outputs (0major+82minor)pagefaults 0swaps
+Current Scheduling Policy: 0
+Setting Scheduling Policy to: 0
+New Scheduling Policy: 0
+pi = 3.200000

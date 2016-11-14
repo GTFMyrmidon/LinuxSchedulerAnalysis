@@ -1,11 +1,9 @@
 /*
  * File: pi.c
  * Author: Andy Sayler
- * Revised: Shivakant Mishra
- * Project: CSCI 3753 Programming Assignment 4
+ * Project: CSCI 3753 Programming Assignment 3
  * Create Date: 2012/03/07
  * Modify Date: 2012/03/09
- * Modify Date: 2016/31/10
  * Description:
  * 	This file contains a simple program for statistically
  *      calculating pi.
@@ -22,11 +20,11 @@
 #define RADIUS (RAND_MAX / 2)
 
 /* Local Functions */
-static inline double dist(double x0, double y0, double x1, double y1){
+inline double dist(double x0, double y0, double x1, double y1){
     return sqrt(pow((x1-x0),2) + pow((y1-y0),2));
 }
 
-static inline double zeroDist(double x, double y){
+inline double zeroDist(double x, double y){
     return dist(0, 0, x, y);
 }
 

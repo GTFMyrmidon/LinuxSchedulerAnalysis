@@ -1,0 +1,42 @@
+#File for collecting data automatically
+
+cp DataTemplate.csv ComputeBoundOTHER.csv
+cp DataTemplate.csv ComputeBoundFIFO.csv
+cp DataTemplate.csv ComputeBoundRR.csv
+cp DataTemplate.csv IOBoundOTHER.csv
+cp DataTemplate.csv IOBoundFIFO.csv
+cp DataTemplate.csv IOBoundRR.csv
+cp DataTemplate.csv MixedOTHER.csv
+cp DataTemplate.csv MixedFIFO.csv
+cp DataTemplate.csv MixedRR.csv
+
+for PROCESSES in 1 5 10 20 50 100 200 500
+do 
+    echo "Running tests with $PROCESSES processes..."
+    for TRIAL in 1 2 3
+    do
+        echo "Trial $TRIAL"
+        echo -n "$TRIAL,$PROCESSES," >> ComputeBoundOTHER.csv
+        echo -n "$TRIAL,$PROCESSES," >> ComputeBoundFIFO.csv
+        echo -n "$TRIAL,$PROCESSES," >> ComputeBoundRR.csv
+        echo -n "$TRIAL,$PROCESSES," >> IOBoundOTHER.csv
+        echo -n "$TRIAL,$PROCESSES," >> IOBoundFIFO.csv
+        echo -n "$TRIAL,$PROCESSES," >> IOBoundRR.csv
+        echo -n "$TRIAL,$PROCESSES," >> MixedOTHER.csv
+        echo -n "$TRIAL,$PROCESSES," >> MixedFIFO.csv
+        echo -n "$TRIAL,$PROCESSES," >> MixedRR.csv
+        ./testscript $PROCESSES
+    done
+    echo "" >> ComputeBoundOTHER.csv
+    echo "" >> ComputeBoundFIFO.csv
+    echo "" >> ComputeBoundRR.csv
+    echo "" >> IOBoundOTHER.csv
+    echo "" >> IOBoundFIFO.csv
+    echo "" >> IOBoundRR.csv
+    echo "" >> MixedOTHER.csv
+    echo "" >> MixedFIFO.csv
+    echo "" >> MixedRR.csv
+    echo
+    echo
+done
+echo "Tests complete!"

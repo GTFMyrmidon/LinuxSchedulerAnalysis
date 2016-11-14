@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -c -g -Wall -Wextra -O3
-LFLAGS = -g -Wall -Wextra -O3
+CFLAGS = -c -g -Wall -Wextra
+LFLAGS = -g -Wall -Wextra
 
 INPUTFILESIZEMEGABYTES = 1
 
@@ -12,7 +12,7 @@ INPUTBLOCKS = $(shell echo $(INPUTFILESIZEBYTES)\/$(INPUTBLOCKSIZEBYTES) | bc)
 
 .PHONY: all clean
 
-all: pi pi-sched rw
+all: pi pi-sched pi-sched-mixed rw rr_quantum
 
 pi: pi.o
 	$(CC) $(LFLAGS) $^ -o $@ -lm
@@ -20,13 +20,22 @@ pi: pi.o
 pi-sched: pi-sched.o
 	$(CC) $(LFLAGS) $^ -o $@ -lm
 
+pi-sched-mixed: pi-sched-mixed.o
+	$(CC) $(LFLAGS) $^ -o $@ -lm
+
 rw: rw.o rwinput
 	$(CC) $(LFLAGS) rw.o -o $@ -lm
+
+rr_quantum: rr_quantum.o
+	$(CC) $(LFLAGS) $^ -o $@ -lm
 
 pi.o: pi.c
 	$(CC) $(CFLAGS) $<
 
 pi-sched.o: pi-sched.c
+	$(CC) $(CFLAGS) $<
+
+pi-sched-mixed.o: pi-sched-mixed.c
 	$(CC) $(CFLAGS) $<
 
 rw.o: rw.c
@@ -35,8 +44,11 @@ rw.o: rw.c
 rwinput: Makefile
 	dd if=/dev/urandom of=./rwinput bs=$(INPUTBLOCKSIZEBYTES) count=$(INPUTBLOCKS)
 
+rr_quantum.o: rr_quantum.c
+	$(CC) $(CFLAGS) $<
+
 clean: testclean
-	rm -f pi pi-sched rw
+	rm -f pi pi-sched pi-sched-mixed rw rr_quantum
 	rm -f rwinput
 	rm -f *.o
 	rm -f *~
