@@ -283,6 +283,8 @@ int main(int argc, char* argv[])
                 // Calculate new nice value
                 int currNVal = getpriority(PRIO_PROCESS, 0);
                 printf("Current Nice Value: %d\n", currNVal);
+
+                // Set nice value of process to random value in [min, max]
                 int niceVal = min + rand() / (RAND_MAX / (max - min + 1) + 1);
                 printf("Target Value: %d\n", niceVal);
                 setpriority(PRIO_PROCESS, 0, niceVal);

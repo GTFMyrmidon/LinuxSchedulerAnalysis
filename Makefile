@@ -43,6 +43,8 @@ clean: testclean
 	rm -f handout/*~
 	rm -f handout/*.log
 	rm -f handout/*.aux
+	rm -rf TMP_DIR
+	rm -rf results
 
 testclean:
 	rm -f rwoutput*

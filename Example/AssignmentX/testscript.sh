@@ -64,5 +64,3 @@ echo Calculating pi over $(( $ITERATIONS/10 )) iterations using SCHED_FIFO with 
 
 echo Calculating pi over $(( $ITERATIONS/10 )) iterations using SCHED_RR with $NUMPROCS simultaneous processes...
 (/usr/bin/time -f "$FORMAT" sudo ./pi-sched-mixed $(( $ITERATIONS / 10 )) SCHED_RR $NUMPROCS > /dev/null) &>> MixedRR.csv
-
-
