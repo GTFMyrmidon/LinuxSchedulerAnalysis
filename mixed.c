@@ -247,8 +247,6 @@ int main(int argc, char* argv[])
         {
             x = (random() % (RADIUS * 2)) - RADIUS;
             y = (random() % (RADIUS * 2)) - RADIUS;
-            fprintf(outFP, "%f\n", x);
-            fprintf(outFP, "%f\n", y);
             if (zeroDist(x,y) < RADIUS)
             {
                 inCircle++;

@@ -55,14 +55,14 @@ run_cfs()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./pi-sched $ITERATIONS SCHED_OTHER $LOAD 1 > /dev/null
+      sudo ./pi-sched $ITERATIONS SCHED_OTHER $LOAD 1 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
@@ -76,14 +76,14 @@ run_cfs()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_OTHER 1 > /dev/null
+      sudo ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_OTHER 1 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
@@ -97,14 +97,14 @@ run_cfs()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./mixed $ITERATIONS SCHED_OTHER $LOAD 1 > /dev/null
+      sudo ./mixed $ITERATIONS SCHED_OTHER $LOAD 1 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
@@ -116,14 +116,14 @@ run_cfs()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./pi-sched $ITERATIONS SCHED_OTHER $LOAD 0 > /dev/null
+      sudo ./pi-sched $ITERATIONS SCHED_OTHER $LOAD 0 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
@@ -137,14 +137,14 @@ run_cfs()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_OTHER 0 > /dev/null
+      sudo ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_OTHER 0 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
@@ -158,14 +158,14 @@ run_cfs()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./mixed $ITERATIONS SCHED_OTHER $LOAD 0 > /dev/null
+      sudo ./mixed $ITERATIONS SCHED_OTHER $LOAD 0 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
@@ -188,14 +188,14 @@ run_fcfs()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./pi-sched $ITERATIONS SCHED_FIFO $LOAD 1 > /dev/null
+      sudo ./pi-sched $ITERATIONS SCHED_FIFO $LOAD 1 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
@@ -209,14 +209,14 @@ run_fcfs()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_FIFO 1 > /dev/null
+      sudo ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_FIFO 1 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
@@ -230,14 +230,14 @@ run_fcfs()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./mixed $ITERATIONS SCHED_FIFO $LOAD 1 > /dev/null
+      sudo ./mixed $ITERATIONS SCHED_FIFO $LOAD 1 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
@@ -251,14 +251,14 @@ run_fcfs()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./pi-sched $ITERATIONS SCHED_FIFO $LOAD 0 > /dev/null
+      sudo ./pi-sched $ITERATIONS SCHED_FIFO $LOAD 0 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
@@ -272,14 +272,14 @@ run_fcfs()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_FIFO 0 > /dev/null
+      sudo ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_FIFO 0 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
@@ -293,14 +293,14 @@ run_fcfs()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./mixed $ITERATIONS SCHED_FIFO $LOAD 0 > /dev/null
+      sudo ./mixed $ITERATIONS SCHED_FIFO $LOAD 0 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
@@ -323,14 +323,14 @@ run_rr()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./pi-sched $ITERATIONS SCHED_RR $LOAD 1 > /dev/null
+      sudo ./pi-sched $ITERATIONS SCHED_RR $LOAD 1 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
@@ -344,14 +344,14 @@ run_rr()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_RR 1 > /dev/null
+      sudo ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_RR 1 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
@@ -365,14 +365,14 @@ run_rr()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./mixed $ITERATIONS SCHED_RR $LOAD 1 > /dev/null
+      sudo ./mixed $ITERATIONS SCHED_RR $LOAD 1 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
@@ -386,14 +386,14 @@ run_rr()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./pi-sched $ITERATIONS SCHED_RR $LOAD 0 > /dev/null
+      sudo ./pi-sched $ITERATIONS SCHED_RR $LOAD 0 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
@@ -407,14 +407,14 @@ run_rr()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_RR 0 > /dev/null
+      sudo ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_RR 0 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
@@ -428,14 +428,14 @@ run_rr()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      ./mixed $ITERATIONS SCHED_RR $LOAD 0 > /dev/null
+      sudo ./mixed $ITERATIONS SCHED_RR $LOAD 0 > /dev/null
       echo "Run $i complete"
     done
 
     sed -i 's/%//' $WORK
     awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
     cat $WORK >> $OUTFILE
-    cp /dev/null $WORK
+    cat /dev/null > $WORK
     echo "" >> $OUTFILE
   done
 
