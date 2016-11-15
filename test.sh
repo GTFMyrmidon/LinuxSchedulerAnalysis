@@ -89,10 +89,24 @@ run_cfs()
 
   echo ""
 
-  # MIXED HERE------------------------------------------------------------------
-  echo "There would be a test here, but I forgot to write it."
-  echo ""
-  # MIXED HERE------------------------------------------------------------------
+  # Mixed, same nice values
+  OUTFILE="results/raw/cfs-mixed-same.csv"
+  for LOAD in "${loads[@]}"
+  do
+    echo CFS scheduler, mixed, $LOAD simultaneous processes, same nice values
+    for i in 1 2 3
+    do
+      "$TIME" -ao $WORK -f "$TIME_FORMAT" \
+      ./mixed $ITERATIONS SCHED_OTHER $LOAD 1 > /dev/null
+      echo "Run $i complete"
+    done
+
+    sed -i 's/%//' $WORK
+    awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
+    cat $WORK >> $OUTFILE
+    cp /dev/null $WORK
+    echo "" >> $OUTFILE
+  done
 
   # CPU-bound, different nice values
   OUTFILE="results/raw/cfs-cpu-diff.csv"
@@ -136,11 +150,27 @@ run_cfs()
 
   echo ""
 
-  # MIXED HERE------------------------------------------------------------------
-  echo "There would be a test here, but I forgot to write it."
+  # Mixed, different nice values
+  OUTFILE="results/raw/cfs-mixed-diff.csv"
+  for LOAD in "${loads[@]}"
+  do
+    echo CFS scheduler, mixed, $LOAD simultaneous processes, different nice values
+    for i in 1 2 3
+    do
+      "$TIME" -ao $WORK -f "$TIME_FORMAT" \
+      ./mixed $ITERATIONS SCHED_OTHER $LOAD 0 > /dev/null
+      echo "Run $i complete"
+    done
+
+    sed -i 's/%//' $WORK
+    awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
+    cat $WORK >> $OUTFILE
+    cp /dev/null $WORK
+    echo "" >> $OUTFILE
+  done
+
   echo "CFS tests complete!"
   echo ""
-  # MIXED HERE------------------------------------------------------------------
 
   return 0
 }
@@ -192,10 +222,26 @@ run_fcfs()
 
   echo ""
 
-  # MIXED HERE------------------------------------------------------------------
-  echo "There would be a test here, but I forgot to write it."
+  # Mixed, same priorities
+  OUTFILE="results/raw/fcfs-mixed-same.csv"
+  for LOAD in "${loads[@]}"
+  do
+    echo FCFS scheduler, mixed, $LOAD simultaneous processes, same priorities
+    for i in 1 2 3
+    do
+      "$TIME" -ao $WORK -f "$TIME_FORMAT" \
+      ./mixed $ITERATIONS SCHED_FIFO $LOAD 1 > /dev/null
+      echo "Run $i complete"
+    done
+
+    sed -i 's/%//' $WORK
+    awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
+    cat $WORK >> $OUTFILE
+    cp /dev/null $WORK
+    echo "" >> $OUTFILE
+  done
+
   echo ""
-  # MIXED HERE------------------------------------------------------------------
 
   # CPU-bound, different priorities
   OUTFILE="results/raw/fcfs-cpu-diff.csv"
@@ -239,11 +285,27 @@ run_fcfs()
 
   echo ""
 
-  # MIXED HERE------------------------------------------------------------------
-  echo "There would be a test here, but I forgot to write it."
+  # Mixed, different priorities
+  OUTFILE="results/raw/fcfs-mixed-diff.csv"
+  for LOAD in "${loads[@]}"
+  do
+    echo FCFS scheduler, mixed, $LOAD simultaneous processes, different priorities
+    for i in 1 2 3
+    do
+      "$TIME" -ao $WORK -f "$TIME_FORMAT" \
+      ./mixed $ITERATIONS SCHED_FIFO $LOAD 0 > /dev/null
+      echo "Run $i complete"
+    done
+
+    sed -i 's/%//' $WORK
+    awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
+    cat $WORK >> $OUTFILE
+    cp /dev/null $WORK
+    echo "" >> $OUTFILE
+  done
+
   echo "FCFS tests complete!"
   echo ""
-  # MIXED HERE------------------------------------------------------------------
 
   return 0
 }
@@ -295,10 +357,26 @@ run_rr()
 
   echo ""
 
-  # MIXED HERE------------------------------------------------------------------
-  echo "There would be a test here, but I forgot to write it."
+  # Mixed, same priorities
+  OUTFILE="results/raw/rr-mixed-same.csv"
+  for LOAD in "${loads[@]}"
+  do
+    echo RR scheduler, mixed, $LOAD simultaneous processes, same priorities
+    for i in 1 2 3
+    do
+      "$TIME" -ao $WORK -f "$TIME_FORMAT" \
+      ./mixed $ITERATIONS SCHED_RR $LOAD 1 > /dev/null
+      echo "Run $i complete"
+    done
+
+    sed -i 's/%//' $WORK
+    awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
+    cat $WORK >> $OUTFILE
+    cp /dev/null $WORK
+    echo "" >> $OUTFILE
+  done
+
   echo ""
-  # MIXED HERE------------------------------------------------------------------
 
   # CPU-bound, different priorities
   OUTFILE="results/raw/rr-cpu-diff.csv"
@@ -342,11 +420,27 @@ run_rr()
 
   echo ""
 
-  # MIXED HERE------------------------------------------------------------------
-  echo "There would be a test here, but I forgot to write it."
+  # Mixed, diferent priorities
+  OUTFILE="results/raw/rr-mixed-diff.csv"
+  for LOAD in "${loads[@]}"
+  do
+    echo RR scheduler, mixed, $LOAD simultaneous processes, different priorities
+    for i in 1 2 3
+    do
+      "$TIME" -ao $WORK -f "$TIME_FORMAT" \
+      ./mixed $ITERATIONS SCHED_RR $LOAD 0 > /dev/null
+      echo "Run $i complete"
+    done
+
+    sed -i 's/%//' $WORK
+    awk 'BEGIN {FS = ","; OFS = ","} { sum1 += $1; sum2 += $2; sum3 += $3; sum4 += $4; sum5 += $5; sum6 += $6; } END {print sum1/3, sum2/3, sum3/3, sum4/3, sum5/3, sum6/3}' $WORK >> $WORK
+    cat $WORK >> $OUTFILE
+    cp /dev/null $WORK
+    echo "" >> $OUTFILE
+  done
+
   echo "RR tests complete!"
   echo ""
-  # MIXED HERE------------------------------------------------------------------
 
   return 0
 }
