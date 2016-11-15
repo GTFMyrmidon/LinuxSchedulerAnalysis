@@ -45,6 +45,7 @@ clean: testclean
 	rm -f handout/*.aux
 	rm -rf TMP_DIR
 	rm -rf results
+	rm work.csv
 
 testclean:
 	rm -f rwoutput*
