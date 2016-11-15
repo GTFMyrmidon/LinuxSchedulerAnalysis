@@ -2,9 +2,9 @@
 
 TIME="/usr/bin/time"
 TIME_FORMAT="%e,%U,%S,%P,%c,%w"
-LIGHT=1
-MEDIUM=2
-HEAVY=3
+LIGHT=10
+MEDIUM=75
+HEAVY=300
 ITERATIONS=1000000
 
 BYTESTOCOPY=102400
@@ -76,7 +76,7 @@ run_cfs()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      sudo ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_OTHER 1 > /dev/null
+      sudo ./rw $BYTESTOCOPY $BLOCKSIZE /dev/urandom TMP_DIR/rwoutput SCHED_OTHER 1 > /dev/null
       echo "Run $i complete"
     done
 
@@ -137,7 +137,7 @@ run_cfs()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      sudo ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_OTHER 0 > /dev/null
+      sudo ./rw $BYTESTOCOPY $BLOCKSIZE /dev/urandom TMP_DIR/rwoutput SCHED_OTHER 0 > /dev/null
       echo "Run $i complete"
     done
 
@@ -209,7 +209,7 @@ run_fcfs()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      sudo ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_FIFO 1 > /dev/null
+      sudo ./rw $BYTESTOCOPY $BLOCKSIZE /dev/urandom TMP_DIR/rwoutput SCHED_FIFO 1 > /dev/null
       echo "Run $i complete"
     done
 
@@ -272,7 +272,7 @@ run_fcfs()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      sudo ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_FIFO 0 > /dev/null
+      sudo ./rw $BYTESTOCOPY $BLOCKSIZE /dev/urandom TMP_DIR/rwoutput SCHED_FIFO 0 > /dev/null
       echo "Run $i complete"
     done
 
@@ -344,7 +344,7 @@ run_rr()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      sudo ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_RR 1 > /dev/null
+      sudo ./rw $BYTESTOCOPY $BLOCKSIZE /dev/urandom TMP_DIR/rwoutput SCHED_RR 1 > /dev/null
       echo "Run $i complete"
     done
 
@@ -407,7 +407,7 @@ run_rr()
     for i in 1 2 3
     do
       "$TIME" -ao $WORK -f "$TIME_FORMAT" \
-      sudo ./rw $BYTESTOCOPY $BLOCKSIZE rwinput /dev/null SCHED_RR 0 > /dev/null
+      sudo ./rw $BYTESTOCOPY $BLOCKSIZE /dev/urandom TMP_DIR/rwoutput SCHED_RR 0 > /dev/null
       echo "Run $i complete"
     done
 

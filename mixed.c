@@ -250,7 +250,6 @@ int main(int argc, char* argv[])
             if (zeroDist(x,y) < RADIUS)
             {
                 inCircle++;
-                fprintf(outFP, "%f\n", inCircle);
             }
             inSquare++;
             fprintf(outFP, "%f\n", inSquare);

@@ -42,7 +42,7 @@ rwinput: Makefile
 	dd if=/dev/urandom of=./rwinput bs=$(INPUTBLOCKSIZEBYTES) count=$(INPUTBLOCKS)
 
 clean: testclean
-	rm -f pi pi-sched rw
+	rm -f pi pi-sched rw mixed
 	rm -f rwinput
 	rm -f *.o
 	rm -f *~
